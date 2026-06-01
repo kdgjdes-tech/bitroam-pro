@@ -1,0 +1,2116 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+
+<title>BITROAM PRO</title>
+
+<style>
+
+.live-counter{
+background:#111827;
+padding:15px;
+margin-top:10px;
+margin-bottom:20px;
+border-radius:15px;
+border:1px solid #333;
+font-size:18px;
+font-weight:bold;
+color:#00ff88;
+}
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+background:
+radial-gradient(circle at top left,#1e293b,#0a0a0a 45%),
+radial-gradient(circle at top right,#1a1a3a,#0a0a0a 50%);
+padding:30px;
+color:white;
+}
+
+.layout{
+display:flex;
+gap:25px;
+}
+
+.main-content{
+flex:1;
+}
+
+.sidebar{
+width:250px;
+background:#111827;
+border-radius:25px;
+padding:25px;
+border:1px solid #222;
+}
+
+.sidebar-title{
+font-size:24px;
+font-weight:bold;
+color:gold;
+margin-bottom:30px;
+}
+
+.sidebar-item{
+padding:15px;
+margin-bottom:10px;
+background:#1a1a3a;
+border-radius:12px;
+cursor:pointer;
+transition:.3s;
+}
+
+.sidebar-item:hover{
+background:#252550;
+transform:translateX(5px);
+}
+
+/* HEADER */
+
+.header{
+box-shadow:
+0 0 30px rgba(255,215,0,.08);
+display:flex;
+justify-content:space-between;
+align-items:center;
+background:#111;
+padding:20px 30px;
+border-radius:20px;
+border:1px solid #222;
+margin-bottom:25px;
+}
+
+.logo{
+font-size:28px;
+font-weight:bold;
+color:gold;
+}
+
+.menu{
+display:flex;
+gap:25px;
+}
+
+.menu span{
+cursor:pointer;
+transition:.3s;
+}
+
+.menu span:hover{
+color:gold;
+}
+
+.profile{
+background:#1a1a3a;
+padding:10px 20px;
+border-radius:15px;
+}
+
+/* TICKER */
+
+.ticker{
+background:#111;
+padding:15px;
+border-radius:15px;
+margin-bottom:25px;
+color:#00ff99;
+font-weight:bold;
+}
+
+/* PORTFOLIO */
+
+.portfolio{
+
+display:grid;
+
+grid-template-columns:
+1fr 1fr 1fr;
+
+gap:20px;
+
+background:#111;
+
+border:2px solid gold;
+
+border-radius:25px;
+
+padding:25px;
+
+margin-bottom:25px;
+
+}
+
+.portfolio h3{
+color:#999;
+margin-bottom:10px;
+}
+
+.portfolio h1{
+color:gold;
+}
+
+/* CARDS */
+
+.container{
+display:flex;
+gap:20px;
+flex-wrap:wrap;
+}
+
+.stats{
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:20px;
+margin-bottom:25px;
+}
+
+.stat-card{
+min-height:120px;
+
+display:flex;
+
+flex-direction:column;
+
+justify-content:center;
+background:linear-gradient(135deg,#1a1a3a,#101828);
+padding:25px;
+border-radius:20px;
+border:1px solid #2a2a4a;
+box-shadow:0 0 20px rgba(0,255,255,.05);
+}
+
+.chart-box{
+background:#111827;
+border-radius:25px;
+padding:30px;
+margin-bottom:25px;
+border:1px solid #222;
+}
+
+.activity-grid{
+display:grid;
+grid-template-columns:2fr 1fr;
+gap:20px;
+margin-bottom:25px;
+}
+
+.transactions{
+background:#111827;
+padding:25px;
+border-radius:25px;
+border:1px solid #222;
+}
+
+.transactions h2{
+margin-bottom:20px;
+color:gold;
+}
+
+.tx{
+display:flex;
+justify-content:space-between;
+padding:15px;
+margin-bottom:10px;
+background:#1a1a3a;
+border-radius:12px;
+}
+
+.tx-plus{
+color:#00ff88;
+font-weight:bold;
+}
+
+.tx-minus{
+color:#ff5555;
+font-weight:bold;
+}
+
+.mining{
+background:#111827;
+padding:25px;
+border-radius:25px;
+border:1px solid #222;
+}
+
+.mining h2{
+color:gold;
+margin-bottom:20px;
+}
+
+.mining-status{
+font-size:28px;
+font-weight:bold;
+color:#00ff88;
+margin-bottom:15px;
+}
+
+.progress{
+height:12px;
+background:#222;
+border-radius:20px;
+overflow:hidden;
+}
+
+.progress-fill{
+height:100%;
+width:78%;
+background:linear-gradient(
+90deg,
+#00d4ff,
+#00ff88
+);
+}
+
+.chart-title{
+font-size:22px;
+margin-bottom:25px;
+color:gold;
+}
+
+.chart{
+height:250px;
+display:flex;
+align-items:flex-end;
+gap:15px;
+}
+
+.bar{
+flex:1;
+border-radius:12px 12px 0 0;
+background:linear-gradient(
+to top,
+#00d4ff,
+#00ff88
+);
+transition:.3s;
+}
+
+.bar:hover{
+transform:scaleY(1.08);
+}
+
+.stat-title{
+color:#999;
+font-size:14px;
+margin-bottom:10px;
+}
+
+.stat-value{
+font-size:28px;
+font-weight:bold;
+color:gold;
+}
+
+.stat-change{
+margin-top:10px;
+color:#00ff88;
+font-size:13px;
+}
+
+.card{
+position:relative;
+overflow:hidden;
+
+backdrop-filter:blur(10px);
+
+background:
+linear-gradient(
+135deg,
+rgba(26,26,58,.95),
+rgba(17,24,39,.95)
+);
+
+flex:1;
+min-width:320px;
+background:#1a1a3a;
+padding:30px;
+border-radius:25px;
+border:2px solid gold;
+box-shadow:0 0 20px rgba(255,215,0,.2);
+transition:.3s;
+}
+
+.card::before{
+
+content:"";
+
+position:absolute;
+
+top:0;
+
+left:-100%;
+
+width:100%;
+
+height:100%;
+
+background:
+
+linear-gradient(
+90deg,
+transparent,
+rgba(255,255,255,.08),
+transparent
+);
+
+transition:1s;
+
+}
+
+.card:hover::before{
+
+left:100%;
+
+}
+
+.card:hover{
+transform:translateY(-5px);
+}
+
+.balance{
+font-size:38px;
+color:gold;
+font-weight:bold;
+margin:15px 0;
+}
+
+.btn{
+transition:.3s;
+width:100%;
+padding:15px;
+margin-top:20px;
+border:none;
+border-radius:15px;
+background:gold;
+color:black;
+font-weight:bold;
+cursor:pointer;
+}
+
+.btn:hover{
+
+transform:translateY(-3px);
+
+box-shadow:
+0 0 20px rgba(255,215,0,.5);
+
+}
+
+.btn:hover{
+opacity:.9;
+}
+
+/* VIP SECTION */
+
+.vip{
+margin-top:25px;
+background:#111;
+border:2px solid gold;
+border-radius:25px;
+padding:25px;
+}
+
+.vip-title{
+font-size:24px;
+margin-bottom:20px;
+color:gold;
+}
+
+.vip-grid{
+display:flex;
+gap:20px;
+flex-wrap:wrap;
+}
+
+.vip-card{
+flex:1;
+min-width:250px;
+background:#1a1a3a;
+padding:20px;
+border-radius:20px;
+border:1px solid #333;
+}
+
+.vip-card h2{
+color:gold;
+margin-bottom:15px;
+}
+
+.vip-card p{
+margin-bottom:8px;
+}
+
+/* FOOTER */
+
+.message{
+
+margin-top:15px;
+
+padding:12px;
+
+border-radius:10px;
+
+font-weight:bold;
+
+display:none;
+
+}
+
+.success{
+
+background:#0f5132;
+
+color:#00ff88;
+
+}
+
+.error{
+
+background:#5a1111;
+
+color:#ff6666;
+
+}
+
+.footer{
+margin-top:30px;
+text-align:center;
+color:#777;
+}
+
+.market-panel{
+
+display:grid;
+
+grid-template-columns:
+repeat(4,1fr);
+
+gap:20px;
+
+margin-bottom:25px;
+
+}
+
+.market-card{
+min-height:120px;
+
+display:flex;
+
+flex-direction:column;
+
+justify-content:center;
+
+background:#111827;
+
+padding:20px;
+
+border-radius:20px;
+
+border:1px solid #222;
+
+}
+
+.market-name{
+
+font-size:20px;
+
+font-weight:bold;
+
+margin-bottom:10px;
+
+}
+
+.market-price{
+
+font-size:26px;
+
+color:gold;
+
+}
+
+.market-up{
+
+color:#00ff88;
+
+}
+
+.market-down{
+
+color:#ff5555;
+
+}
+
+.profile-card{
+
+background:#111827;
+
+padding:25px;
+
+border-radius:25px;
+
+border:1px solid #222;
+
+margin-bottom:25px;
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+}
+
+.user-info h2{
+
+color:gold;
+
+margin-bottom:10px;
+
+}
+
+.user-level{
+
+color:#00ff88;
+
+font-weight:bold;
+
+}
+
+.user-badge{
+
+width:70px;
+
+height:70px;
+
+border-radius:50%;
+
+background:linear-gradient(
+135deg,
+gold,
+#ff8c00
+);
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+font-size:26px;
+
+font-weight:bold;
+
+color:black;
+
+}
+
+.vip-progress{
+
+background:#111827;
+
+padding:25px;
+
+border-radius:25px;
+
+border:1px solid #222;
+
+margin-bottom:25px;
+
+}
+
+.vip-bar{
+
+height:18px;
+
+background:#222;
+
+border-radius:20px;
+
+overflow:hidden;
+
+margin-top:15px;
+
+}
+
+.vip-fill{
+
+height:100%;
+
+width:72%;
+
+background:linear-gradient(
+90deg,
+gold,
+#00ff88
+);
+
+}
+
+.welcome{
+
+background:linear-gradient(
+135deg,
+#1a1a3a,
+#111827
+);
+
+padding:35px;
+
+border-radius:25px;
+
+margin-bottom:25px;
+
+border:1px solid #333;
+
+}
+
+.welcome h1{
+
+color:gold;
+
+margin-bottom:10px;
+
+}
+
+.welcome p{
+
+color:#ccc;
+
+}
+
+.live-table{
+
+background:#111827;
+
+border-radius:25px;
+
+padding:25px;
+
+margin-top:25px;
+
+border:1px solid #222;
+
+}
+
+.live-table h2{
+
+color:gold;
+
+margin-bottom:20px;
+
+}
+
+.trade-row{
+
+display:flex;
+
+justify-content:space-between;
+
+padding:15px;
+
+background:#1a1a3a;
+
+margin-bottom:10px;
+
+border-radius:12px;
+
+}
+
+.buy{
+
+color:#00ff88;
+
+font-weight:bold;
+
+}
+
+.sell{
+
+color:#ff5555;
+
+font-weight:bold;
+
+}
+
+.overview{
+
+display:grid;
+
+grid-template-columns:
+repeat(4,1fr);
+
+gap:20px;
+
+margin-top:25px;
+
+}
+
+.overview-card{
+
+background:linear-gradient(
+135deg,
+#111827,
+#1a1a3a
+);
+
+padding:25px;
+
+border-radius:20px;
+
+border:1px solid #222;
+
+transition:.3s;
+
+}
+
+.overview-card:hover{
+
+transform:translateY(-5px);
+
+box-shadow:
+0 0 20px rgba(0,255,255,.15);
+
+}
+
+.overview-title{
+
+color:#888;
+
+margin-bottom:10px;
+
+}
+
+.overview-value{
+
+font-size:28px;
+
+font-weight:bold;
+
+color:gold;
+
+}
+
+.overview-green{
+
+color:#00ff88;
+
+}
+
+.overview-red{
+
+color:#ff5555;
+
+}
+
+.notification-panel{
+
+background:#111827;
+
+border-radius:25px;
+
+padding:25px;
+
+margin-top:25px;
+
+border:1px solid #222;
+
+}
+
+.notification-panel h2{
+
+color:gold;
+
+margin-bottom:20px;
+
+}
+
+.notification{
+
+padding:15px;
+
+margin-bottom:12px;
+
+background:#1a1a3a;
+
+border-left:4px solid gold;
+
+border-radius:10px;
+
+}
+
+.notification-time{
+
+font-size:12px;
+
+color:#888;
+
+margin-top:5px;
+
+}
+
+.modal{
+
+display:none;
+
+position:fixed;
+
+top:0;
+left:0;
+
+width:100%;
+height:100%;
+
+background:rgba(0,0,0,.7);
+
+justify-content:center;
+align-items:center;
+
+z-index:999;
+
+}
+
+.modal-box{
+
+background:#111827;
+
+padding:30px;
+
+border-radius:25px;
+
+width:400px;
+
+border:2px solid gold;
+
+}
+
+.modal-box h2{
+
+margin-bottom:20px;
+
+color:gold;
+
+}
+
+.modal-box input{
+
+width:100%;
+
+padding:15px;
+
+border:none;
+
+border-radius:10px;
+
+margin-bottom:20px;
+
+font-size:18px;
+
+}
+
+.main-content{
+flex:1;
+}
+
+@media(max-width:900px){
+
+.layout{
+flex-direction:column;
+}
+
+.sidebar{
+width:100%;
+}
+
+.stats,
+.market-panel,
+.overview,
+.portfolio,
+.activity-grid{
+grid-template-columns:1fr;
+}
+
+.header{
+flex-direction:column;
+gap:15px;
+}
+
+.menu{
+flex-wrap:wrap;
+justify-content:center;
+}
+
+.card{
+min-width:100%;
+}
+
+.modal-box{
+width:90%;
+}
+
+}
+
+</style>
+
+</head>
+
+<body>
+
+    <div id="toast" style="
+position:fixed;
+top:20px;
+right:20px;
+background:#00aa55;
+color:white;
+padding:15px 25px;
+border-radius:12px;
+display:none;
+z-index:9999;
+font-weight:bold;
+">
+Notification
+</div>
+
+    <div class="layout">
+
+<div class="sidebar">
+
+<div class="sidebar-title">
+BITROAM
+</div>
+
+<div class="sidebar-item">
+Dashboard
+</div>
+
+<div class="sidebar-item">
+Wallet
+</div>
+
+<div class="sidebar-item">
+Mining
+</div>
+
+<div class="sidebar-item">
+VIP Plans
+</div>
+
+<div class="sidebar-item">
+Transactions
+</div>
+
+<div class="sidebar-item">
+Support
+</div>
+
+</div>
+
+<div class="main-content">
+
+<div class="header">
+
+<div class="logo">
+BITROAM PRO
+</div>
+
+<div class="menu">
+<span>Dashboard</span>
+<span>Wallet</span>
+<span>VIP</span>
+<span>Mining</span>
+<span>Support</span>
+</div>
+
+<div class="profile">
+VIP USER
+</div>
+
+</div>
+
+<div class="welcome">
+
+<h1>
+Welcome Back Mustafa 👋
+</h1>
+
+<p>
+Your investment portfolio is performing above average today.
+</p>
+
+</div>
+
+<div class="ticker">
+BTC +4.2% ▲ | ETH +2.8% ▲ | SOL +8.1% ▲ | BNB +3.5% ▲ | XRP -1.2% ▼ | DOGE +5.4% ▲
+</div>
+
+<div class="live-counter">
+🔥 Active Investors:
+<span id="investors">1247</span>
+</div>
+
+<div class="live-counter">
+🕒 <span id="clock"></span>
+</div>
+
+<div class="portfolio">
+
+<div>
+
+<div class="stats">
+
+<div class="stat-card">
+<div class="stat-title">Total Users</div>
+<div class="stat-value">12,547</div>
+<div class="stat-change">+8.5% Today</div>
+</div>
+
+<div class="profile-card">
+
+<div class="user-info">
+
+<h2>Mustafa Account</h2>
+
+<p class="user-level" id="vipLevel">
+VIP LEVEL 3
+</p>
+
+<p>
+Member Since 2025
+</p>
+
+</div>
+
+<div class="user-badge">
+M
+</div>
+
+</div>
+
+<div class="vip-progress">
+
+<h2>VIP Progress</h2>
+
+<p>
+72% Complete To VIP 4
+</p>
+
+<div class="vip-bar">
+
+<div class="vip-fill"></div>
+
+</div>
+
+</div>
+
+<div class="market-panel">
+
+<div class="market-card">
+
+<div class="market-name">
+BTC
+</div>
+
+<div class="market-price" id="btcPrice">
+109845
+</div>
+
+<div class="market-up">
++4.2%
+</div>
+
+</div>
+
+<div class="market-card">
+
+<div class="market-name">
+ETH
+</div>
+
+<div class="market-price" id="ethPrice">
+6240
+</div>
+
+<div class="market-up">
++2.8%
+</div>
+
+</div>
+
+<div class="market-card">
+
+<div class="market-name">
+SOL
+</div>
+
+<div class="market-price" id="solPrice">
+820
+</div>
+
+<div class="market-up">
++8.1%
+</div>
+
+</div>
+
+<div class="market-card">
+
+<div class="market-name">
+XRP
+</div>
+
+<div class="market-price" id="xrpPrice">
+3.48
+</div>
+
+<div class="market-down">
+-1.2%
+</div>
+
+</div>
+
+</div>
+
+<div class="chart-box">
+
+<div class="chart-title">
+Profit Analytics
+</div>
+
+<div class="activity-grid">
+
+<div class="transactions">
+
+<h2>Recent Transactions</h2>
+
+<div id="transactionList">
+
+</div>
+
+<div class="tx">
+<span>Deposit</span>
+<span class="tx-plus">+500 USDT</span>
+</div>
+
+<div class="tx">
+<span>Daily Profit</span>
+<span class="tx-plus">+125 USDT</span>
+</div>
+
+<div class="tx">
+<span>Withdraw</span>
+<span class="tx-minus">-200 USDT</span>
+</div>
+
+<div class="tx">
+<span>Deposit</span>
+<span class="tx-plus">+800 USDT</span>
+</div>
+
+<div class="tx">
+<span>Mining Reward</span>
+<span class="tx-plus">+95 USDT</span>
+
+</div>
+
+</div>
+
+<div class="mining">
+
+<h2>Mining Status</h2>
+
+<div class="mining-status">
+ACTIVE
+</div>
+
+<p>Hash Rate: 98 TH/s</p>
+
+<br>
+
+<div class="progress">
+
+<div class="progress-fill"></div>
+
+</div>
+
+<br>
+
+<p>Mining Efficiency: 78%</p>
+
+</div>
+
+</div>
+
+<div class="chart">
+
+<div class="bar" style="height:60px"></div>
+
+<div class="bar" style="height:110px"></div>
+
+<div class="bar" style="height:90px"></div>
+
+<div class="bar" style="height:180px"></div>
+
+<div class="bar" style="height:140px"></div>
+
+<div class="bar" style="height:220px"></div>
+
+<div class="bar" style="height:170px"></div>
+
+<div class="bar" style="height:240px"></div>
+
+</div>
+
+</div>
+
+<div class="stat-card">
+<div class="stat-title">Online Users</div>
+<div class="stat-value" id="onlineUsers">
+1842
+</div>
+<div class="stat-change">Live Now</div>
+</div>
+
+<div class="stat-card">
+<div class="stat-title">Today's Deposits</div>
+<div class="stat-value">84K</div>
+<div class="stat-change">USDT</div>
+</div>
+
+<div class="stat-card">
+<div class="stat-title">Today's Withdrawals</div>
+<div class="stat-value">41K</div>
+<div class="stat-change">USDT</div>
+</div>
+
+</div>
+
+</div>
+
+<h3>Total Assets</h3>
+<h1 id="totalAssets">124580 USDT</h1>
+</div>
+
+<div>
+<h3>Today's Profit</h3>
+<h1>1,245 USDT</h1>
+</div>
+
+<div>
+<h3>Monthly Profit</h3>
+<h1>14,980 USDT</h1>
+</div>
+
+</div>
+
+<div class="container">
+
+<div class="card">
+
+<h2>My Wallet</h2>
+
+<div class="balance" id="walletBalance">
+50000 USDT
+</div>
+
+<p>TRC20 Wallet</p>
+<p>Status: Active</p>
+
+<button class="btn" onclick="openDeposit()">
+Deposit Now
+</button>
+
+</div>
+
+<div class="card">
+
+<h2>Daily Profit</h2>
+
+<div class="balance" id="dailyProfit">
+125 USDT
+</div>
+
+<p>Today's Earnings</p>
+<p>Profit Status: Active</p>
+
+<button class="btn">
+View Details
+</button>
+
+</div>
+
+<div class="card">
+
+<h2>Withdraw</h2>
+
+<div class="balance">
+12,450 USDT
+</div>
+
+<p>Available After 45 Days</p>
+<p>Max Withdraw 130%</p>
+
+<button
+class="btn"
+onclick="openWithdraw()">
+
+Withdraw Funds
+
+</button>
+
+<div
+id="withdrawMessage"
+class="message">
+</div>
+
+</div>
+
+</div>
+
+<div class="vip">
+
+<div class="vip-title">
+VIP Investment Plans
+</div>
+
+<div class="vip-grid">
+
+<div class="vip-card">
+<h2>VIP 1</h2>
+<p>Deposit: 100 USDT</p>
+<p>Daily Profit: 2%</p>
+<p>Duration: 45 Days</p>
+<button
+class="btn"
+onclick="setVip(1)">
+Activate
+</button>
+</div>
+
+<div class="vip-card">
+<h2>VIP 2</h2>
+<p>Deposit: 500 USDT</p>
+<p>Daily Profit: 3%</p>
+<p>Duration: 45 Days</p>
+<button
+class="btn"
+onclick="setVip(2)">
+Activate
+</button>
+</div>
+
+<div class="vip-card">
+<h2>VIP 3</h2>
+<p>Deposit: 1000 USDT</p>
+<p>Daily Profit: 4%</p>
+<p>Duration: 45 Days</p>
+<button
+class="btn"
+onclick="setVip(3)">
+Activate
+</button>
+</div>
+
+</div>
+
+</div>
+
+<div class="overview">
+
+<div class="overview-card">
+
+<div class="overview-title">
+Market Cap
+</div>
+
+<div class="overview-value">
+$2.48T
+</div>
+
+<div class="overview-green">
++3.4%
+</div>
+
+</div>
+
+<div class="overview-card">
+
+<div class="overview-title">
+24H Volume
+</div>
+
+<div class="overview-value">
+$184B
+</div>
+
+<div class="overview-green">
++5.8%
+</div>
+
+</div>
+
+<div class="overview-card">
+
+<div class="overview-title">
+BTC Dominance
+</div>
+
+<div class="overview-value">
+56.2%
+</div>
+
+<div class="overview-green">
++1.1%
+</div>
+
+</div>
+
+<div class="overview-card">
+
+<div class="overview-title">
+Fear & Greed
+</div>
+
+<div class="overview-value">
+78
+</div>
+
+<div class="overview-red">
+Greed
+</div>
+
+</div>
+
+</div>
+
+<div class="live-table">
+
+<h2>
+Live Trading Activity
+</h2>
+
+<div class="trade-row">
+<span>BTC/USDT</span>
+<span class="buy">BUY 2.5 BTC</span>
+</div>
+
+<div class="trade-row">
+<span>ETH/USDT</span>
+<span class="sell">SELL 15 ETH</span>
+</div>
+
+<div class="trade-row">
+<span>SOL/USDT</span>
+<span class="buy">BUY 320 SOL</span>
+</div>
+
+<div class="trade-row">
+<span>XRP/USDT</span>
+<span class="buy">BUY 12,000 XRP</span>
+</div>
+
+<div class="trade-row">
+<span>BNB/USDT</span>
+<span class="sell">SELL 25 BNB</span>
+</div>
+
+</div>
+
+<div class="notification-panel">
+
+<h2>
+Notifications
+</h2>
+
+<div class="notification">
+New VIP 3 investment activated
+<div class="notification-time">
+2 minutes ago
+</div>
+</div>
+
+<div class="notification">
+Daily profit added successfully
+<div class="notification-time">
+15 minutes ago
+</div>
+</div>
+
+<div class="notification">
+Withdrawal request under review
+<div class="notification-time">
+1 hour ago
+</div>
+</div>
+
+<div class="notification">
+Security verification completed
+<div class="notification-time">
+Today
+</div>
+</div>
+
+</div>
+
+<div class="footer">
+BITROAM PRO Dashboard Demo
+</div>
+</div>
+
+</div>
+
+<script>
+
+window.onload = function(){
+
+let savedBalance =
+localStorage.getItem("walletBalance");
+
+if(savedBalance){
+
+document.getElementById(
+"walletBalance"
+).innerHTML =
+savedBalance + " USDT";
+
+}
+
+let savedTransactions =
+localStorage.getItem(
+"transactions"
+);
+
+if(savedTransactions){
+
+document.getElementById(
+"transactionList"
+).innerHTML =
+savedTransactions;
+
+}
+
+let savedVip =
+localStorage.getItem("vipLevel");
+
+if(savedVip){
+
+document.getElementById(
+"vipLevel"
+).innerHTML =
+savedVip;
+
+}
+
+let savedProfit =
+localStorage.getItem("dailyProfit");
+
+if(savedProfit){
+
+document.getElementById(
+"dailyProfit"
+).innerHTML =
+savedProfit + " USDT";
+
+}
+
+let savedAssets =
+localStorage.getItem("totalAssets");
+
+if(savedAssets){
+
+document.getElementById(
+"totalAssets"
+).innerHTML =
+savedAssets + " USDT";
+
+}
+
+}
+
+let online = 1842;
+
+setInterval(()=>{
+
+online += Math.floor(Math.random()*15)-7;
+
+if(online < 1000){
+online = 1000;
+}
+
+document.getElementById(
+"onlineUsers"
+).innerHTML = online;
+
+},2000);
+
+</script>
+
+<script>
+
+let investors = 1247;
+
+setInterval(function(){
+
+investors += Math.floor(Math.random()*5);
+
+document.getElementById("investors").innerText =
+investors;
+
+},2000);
+
+</script>
+
+<script>
+
+setInterval(function(){
+
+document.getElementById("btcPrice").innerHTML =
+Math.floor(108000 + Math.random()*5000);
+
+document.getElementById("ethPrice").innerHTML =
+Math.floor(6000 + Math.random()*500);
+
+document.getElementById("solPrice").innerHTML =
+Math.floor(750 + Math.random()*150);
+
+document.getElementById("xrpPrice").innerHTML =
+(3 + Math.random()).toFixed(2);
+
+},2000);
+
+</script>
+
+<script>
+
+function openDeposit(){
+
+document.getElementById(
+"depositModal"
+).style.display="flex";
+
+}
+
+function closeDeposit(){
+
+document.getElementById(
+"depositModal"
+).style.display="none";
+
+}
+
+function confirmDeposit(){
+
+let amount =
+parseInt(
+document.getElementById(
+"depositAmount"
+).value
+);
+
+if(!amount || amount<=0){
+return;
+}
+
+let balance =
+parseInt(
+document.getElementById(
+"walletBalance"
+).innerText
+);
+
+balance += amount;
+
+document.getElementById(
+"walletBalance"
+).innerHTML =
+balance + " USDT";
+
+let txList =
+document.getElementById(
+"transactionList"
+);
+
+txList.innerHTML =
+
+'<div class="tx">' +
+'<span>Deposit<br><small>' +
+new Date().toLocaleString() +
+'</small></span>' +
+'<span class="tx-plus">+' +
+amount +
+' USDT</span>' +
+'</div>'
+
++ txList.innerHTML;
+
+localStorage.setItem(
+"walletBalance",
+balance
+);
+
+localStorage.setItem(
+"transactions",
+txList.innerHTML
+);
+
+let rows =
+txList.querySelectorAll(".tx");
+
+if(rows.length > 20){
+
+for(let i=20;i<rows.length;i++){
+
+rows[i].remove();
+
+}
+
+localStorage.setItem(
+"transactions",
+txList.innerHTML
+);
+
+}
+
+let msg =
+document.getElementById(
+"withdrawMessage"
+);
+
+msg.style.display="block";
+
+msg.className =
+"message success";
+
+msg.innerHTML =
+"Deposit Successful";
+
+showToast("✅ Deposit Successful");
+
+setTimeout(function(){
+
+msg.style.display="none";
+
+},3000);
+
+closeDeposit();
+
+}
+
+function openWithdraw(){
+
+document.getElementById(
+"withdrawModal"
+).style.display="flex";
+
+}
+
+function closeWithdraw(){
+
+document.getElementById(
+"withdrawModal"
+).style.display="none";
+
+}
+
+function confirmWithdraw(){
+
+let amount =
+parseInt(
+document.getElementById(
+"withdrawAmount"
+).value
+);
+
+if(!amount || amount<=0){
+return;
+}
+
+let balance =
+parseInt(
+document.getElementById(
+"walletBalance"
+).innerText
+);
+
+if(balance < amount){
+
+let msg =
+document.getElementById(
+"withdrawMessage"
+);
+
+msg.style.display="block";
+
+msg.className =
+"message error";
+
+msg.innerHTML =
+"Insufficient Balance";
+
+return;
+
+}
+
+balance -= amount;
+
+document.getElementById(
+"walletBalance"
+).innerHTML =
+balance + " USDT";
+
+localStorage.setItem(
+"walletBalance",
+balance
+);
+
+let txList =
+document.getElementById(
+"transactionList"
+);
+
+txList.innerHTML =
+
+'<div class="tx">' +
+'<span>Withdraw<br><small>' +
+new Date().toLocaleString() +
+'</small></span>' +
+'<span class="tx-minus">-' +
+amount +
+' USDT</span>' +
+'</div>'
+
++ txList.innerHTML;
+
+localStorage.setItem(
+"transactions",
+txList.innerHTML
+);
+
+let rows =
+txList.querySelectorAll(".tx");
+
+if(rows.length > 20){
+
+for(let i=20;i<rows.length;i++){
+
+rows[i].remove();
+
+}
+
+localStorage.setItem(
+"transactions",
+txList.innerHTML
+);
+
+}
+
+let msg =
+document.getElementById(
+"withdrawMessage"
+);
+
+msg.style.display="block";
+
+msg.className =
+"message success";
+
+msg.innerHTML =
+"Withdraw Successful";
+
+showToast("✅ Withdraw Successful");
+
+setTimeout(function(){
+
+msg.style.display="none";
+
+},3000);
+
+closeWithdraw();
+
+}
+
+</script>
+
+<div id="depositModal" class="modal">
+
+<div class="modal-box">
+
+<h2>Deposit Funds</h2>
+
+<input
+type="number"
+id="depositAmount"
+placeholder="Enter Amount">
+
+<button
+class="btn"
+onclick="confirmDeposit()">
+Confirm Deposit
+</button>
+
+<button
+class="btn"
+onclick="closeDeposit()">
+Cancel
+</button>
+
+</div>
+
+</div>
+
+<div id="withdrawModal" class="modal">
+
+<div class="modal-box">
+
+<h2>Withdraw Funds</h2>
+
+<input
+type="number"
+id="withdrawAmount"
+placeholder="Enter Amount">
+
+<button
+class="btn"
+onclick="confirmWithdraw()">
+Confirm Withdraw
+</button>
+
+<button
+class="btn"
+onclick="closeWithdraw()">
+Cancel
+</button>
+
+</div>
+
+</div>
+
+<script>
+
+setInterval(function(){
+
+let now = new Date();
+
+document.getElementById("clock").innerHTML =
+now.toLocaleString();
+
+},1000);
+
+</script>
+
+<script>
+
+setInterval(function(){
+
+let bars =
+document.querySelectorAll(".bar");
+
+bars.forEach(function(bar){
+
+let randomHeight =
+50 + Math.floor(Math.random()*200);
+
+bar.style.height =
+randomHeight + "px";
+
+});
+
+},3000);
+
+</script>
+
+<script>
+
+let profit =
+parseInt(
+localStorage.getItem("dailyProfit")
+) || 125;
+
+let assets =
+parseInt(
+localStorage.getItem("totalAssets")
+) || 124580;
+
+setInterval(function(){
+
+let addProfit =
+Math.floor(Math.random()*5)+1;
+
+profit += addProfit;
+
+assets += addProfit;
+
+document.getElementById(
+"dailyProfit"
+).innerHTML =
+profit + " USDT";
+
+document.getElementById(
+"totalAssets"
+).innerHTML =
+assets + " USDT";
+
+localStorage.setItem(
+"dailyProfit",
+profit
+);
+
+localStorage.setItem(
+"totalAssets",
+assets
+);
+
+},5000);
+
+</script>
+
+<script>
+
+function showToast(text){
+
+let toast =
+document.getElementById("toast");
+
+toast.innerHTML = text;
+
+toast.style.display = "block";
+
+setTimeout(function(){
+
+toast.style.display = "none";
+
+},3000);
+
+}
+
+</script>
+
+<script>
+
+function setVip(level){
+
+document.getElementById(
+"vipLevel"
+).innerHTML =
+"VIP LEVEL " + level;
+
+localStorage.setItem(
+"vipLevel",
+"VIP LEVEL " + level
+);
+
+showToast(
+"⭐ VIP LEVEL " + level
+);
+
+}
+
+</script>
+
+</body>
+</html>
